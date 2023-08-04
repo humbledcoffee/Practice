@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1.常量
+      const a = "1";
+      //报错
+      a = "2";
+      //不能重复定义
+      const b = 1;
+      const b = 2;
+      //遵循块级作用域
+      //声明不提升 存在暂时性死区
+      //不与顶层对象挂钩
+      //储存的是地址 所以引用数据类型中存在堆内存的 都可以改 除非用freeze 把对象冻住（浅冻 每一层都冻住得递归）
+    </script>
+  </body>
+</html>

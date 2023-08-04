@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //不允许重复声明
+      //块级作用域
+      //暂时性死区
+      let a = 1;
+      function test() {
+        console.log(a);
+        let a = 2;
+      }
+      test();
+      //let不会与顶层对象挂钩 浏览器是window node是global 都不会挂钩
+    </script>
+  </body>
+</html>

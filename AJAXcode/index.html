@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .result {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #119aac;
+      }
+    </style>
+  </head>
+  <body>
+    <button>点击发送GET请求</button>
+    <button>点击发送POST请求</button>
+    <div class="result"></div>
+    <script>
+      const getBtn = document.getElementsByTagName("button")[0];
+      const PostBtn = document.getElementsByTagName("button")[1];
+      const result = document.getElementsByClassName("result")[0];
+      getBtn.onclick = () => {
+        // 1.创建对象
+        const xhr = new XMLHttpRequest();
+        //延时设置
+        xhr.timeout = 2000;
+        //超时回调
+        xhr.ontimeout = () => {
+          alert("接口超时，请稍后再试");
+        };
+        //接口错误
+        xhr.onerror = () => {
+          alert("接口error");
+        };
+        //xhr.bort 手动取消接口请求
+        //2.初始化 设置请求的方法和url
+        xhr.open("GET", "http://127.0.0.1:8080/server?a=1&b=2");
+        //3.发送
+        xhr.send();
+        //4.处理服务端返回的结果
+        //readystate 是xhr对象中的属性 表示状态
+        // 0最开始属性的值
+        // 1表示open调用完毕
+        // 2表示send调用完毕
+        // 3表示服务端返回部分结果
+        // 4表示服务端返回所有结果
+        xhr.onreadystatechange = () => {
+          switch (xhr.readyState) {
+            case 0:
+              console.log("0");
+              break;
+            case 1:
+              console.log("1");
+              break;
+            case 2:
+              console.log("2");
+              break;
+            case 3:
+              console.log("3");
+              break;
+            case 4:
+              const { status, statusText, response } = xhr;
+              if (200 <= status < 300) {
+                console.log(
+                  "status,statusText,response,getAllResponseHeaders",
+                  status, //状态码
+                  statusText, //状态字符串
+                  response, //响应体
+                  xhr.getAllResponseHeaders() //所有响应头
+                );
+              }
+              result.innerHTML = xhr.response;
+              console.log("4");
+              break;
+            default:
+              break;
+          }
+        };
+      };
+      PostBtn.onclick = () => {
+        // 1.创建对象
+        const xhr = new XMLHttpRequest();
+        //2.初始化 设置请求的方法和url
+        xhr.open("POST", "http://127.0.0.1:8080/server");
+        //设置请求头
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.setRequestHeader("name", "lidong");
+
+        //3.发送
+        xhr.send("a=100&b=200");
+        //4.处理服务端返回的结果
+        //readystate 是xhr对象中的属性 表示状态
+        // 0最开始属性的值
+        // 1表示open调用完毕
+        // 2表示send调用完毕
+        // 3表示服务端返回部分结果
+        // 4表示服务端返回所有结果
+        xhr.onreadystatechange = () => {
+          switch (xhr.readyState) {
+            case 0:
+              console.log("0");
+              break;
+            case 1:
+              console.log("1");
+              break;
+            case 2:
+              console.log("2");
+              break;
+            case 3:
+              console.log("3");
+              break;
+            case 4:
+              const { status, statusText, response } = xhr;
+              if (200 <= status < 300) {
+                console.log(
+                  "status,statusText,response,getAllResponseHeaders",
+                  status, //状态码
+                  statusText, //状态字符串
+                  response, //响应体
+                  xhr.getAllResponseHeaders() //所有响应头
+                );
+              }
+              result.innerHTML = xhr.response;
+              console.log("4");
+              break;
+            default:
+              break;
+          }
+        };
+      };
+    </script>
+  </body>
+</html>

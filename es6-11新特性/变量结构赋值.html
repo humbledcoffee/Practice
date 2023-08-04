@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //数组结构赋值 并给默认值
+      let a = [1, 2, 3];
+      let [d = 3, b = 4, c = 5] = a;
+      // 如果只取一个
+      let [, , h] = a;
+      //多层数组就嵌套结构 例如 [a,[b],c]
+      // 对象结构赋值 不用按顺序 按键值取的 也不用全取 可以重新命名 可以给默认值
+      let obj = { e: 1, f: 1, g: 2 };
+      let { e, f = 5, g: newG } = obj;
+      //函数参数和字符串也可以结构赋值 也可以结构赋值 也可以直接当对象解构出来length属性
+    </script>
+  </body>
+</html>

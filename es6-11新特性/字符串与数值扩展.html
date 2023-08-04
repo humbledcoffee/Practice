@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.includes函数 包不包含字符串 第二个参数是搜索开始位置
+      let str1 = "lidong";
+      console.log("includes函数", str1.includes("dong", 1));
+      // 2.startwith 以什么为开头 第二个参数是搜索开始位置
+      console.log("startwith", str1.startsWith("li", 0));
+      // 3.endwith 以什么为结尾 第二个参数是搜索开始位置 从结尾开始
+      console.log("endwith", str1.endsWith("g", 0));
+      // 4.repeat 字符串重复几次 可以是字符串 但得是数字字符串
+      console.log("repeat", str1.repeat(0));
+
+      let num1 = 10;
+      //1. 支持二进制八进制 以前支持10 和16
+      let num2 = 0x100; //256
+      let num3 = 0b110; //二进制
+      let num4 = 0o110; //八进制
+      //2. Number.isFinite 是否是有限数值 不会转换 字符串数字会直接返回false
+      //然而windows的 isFinite 会看先转换为数值是不是有限的
+      let num5 = Number.isFinite("100"); //false
+      let num6 = isFinite("100"); //true
+      //3.Number.isNaN 是不是not a number
+      //windows的会将非数值转换成数值 再去判断
+      let num7 = Number.isNaN("100"); //false
+      let num8 = isNaN("lidong"); //true
+      //4.Number.isInteger 判断一个数值是否是整数
+      let num9 = Number.isInteger(100.0); //true
+      //5.Number.极小常量
+      let num10 = 0.1 + 0.2 - 0.3 < Number.EPSILON;
+
+      //1.Math.trunc 将小数部分抹掉 返回一个整数 直接舍弃没有什么四舍五入
+      let math1 = Math.trunc(1.2);
+      //2.Math.sign 方法用来判断一个数是正数 负数 还是0 对于非数值会先进行转换将其转换为数值
+      let math2 = Math.sign(-100); // -1
+      let math3 = Math.sign(100); // 1
+      let math4 = Math.sign(+0); // +0
+      let math5 = Math.sign(-0); // -0
+      let math6 = Math.sign("lidong"); //NaN
+    </script>
+  </body>
+</html>

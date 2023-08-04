@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1.参数默认值
+      let ajax = (a = 1, b = 1, c = 1) => {
+        console.log(a, b, c);
+      };
+      //2.rest剩余参数
+      let test = (...arg) => {
+        console.log(arg);
+      };
+      //3.函数name属性 函数的名字
+      console.log(test.name);
+      //剪头函数 无法访问arguments 没有this(指向父作用域)
+      let test2 = () => "1";
+      let test3 = () => ({ name: 1, age: 2 });
+    </script>
+  </body>
+</html>
