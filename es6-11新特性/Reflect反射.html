@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1.代替Object 上面的某些方法
+      let obj = {};
+      Reflect.defineProperty(obj, "name", {
+        value: "lidong",
+        writable: true, //可以控制属性是否可以读写 比如重新定义属性name
+        enumerable: true, //可被遍历
+        configurable: true, //可被配置 比如删除等 false就删除不掉了
+      });
+      console.log("🚀 ~ file: Reflect.html:12 ~ obj:", obj);
+      // 2.替换命令式的语法 比如 in delete
+      console.log("name" in obj);
+      console.log(Reflect.has(obj, "name"));
+      // 3.替换delete obj.name
+      console.log(Reflect.deleteProperty(obj, "name"));
+      // 4.设置属性 会拿到该数据类型的默认行为
+      Reflect.set(obj, "age", 28);
+      // 5.获取属性
+      Reflect.set(obj, "age");
+      //与proxy相结合 set方法
+      let s = new Set();
+      let sProxy = new Proxy(s, {
+        get(target, key) {
+          console.log("sproxy", target[key]);
+          let value = Reflect.get(target, key);
+          if (value instanceof Function) {
+            return value.bind(target);
+          }
+          return value;
+        },
+        set(target, key, value) {
+          Reflect.set(...arguments);
+        },
+      });
+    </script>
+  </body>
+</html>

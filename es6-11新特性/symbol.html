@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //避免属性覆盖和冲突 保护属性
+      let obj = {
+        name: "lidong",
+        getName: () => {
+          console.log(this.name);
+        },
+      };
+      obj.name = "laoTan";
+      obj.getName();
+      let s1 = Symbol(); //生成symbol类型的数据 独一无二 不能用new
+      let s2 = Symbol();
+      console.log("s1 === s2", s1 === s2);
+      //1.不能进行运算 + - > <
+      //2.可以用toString 没有意义
+      //3.可以隐式的转换成boolean
+      if (s1) {
+        console.log("true");
+      }
+      let name = Symbol();
+      let keys = {
+        age: Symbol(),
+        test: Symbol("test"), //加个传参 将每个属性做个区分
+      };
+      //这样做obj的name就不会覆盖
+      obj[name] = "biaShao";
+      let obj2 = {
+        [keys.age]: 18,
+        [keys.test]: () => {
+          conosle.log("testobj2");
+        },
+      };
+      //4.for in 不能比遍历symobol属性名的属性 可以通过 Object.getOwnPropertySymbols()拿到
+      // Reflect.ownKeys() 可以拿到属性名数组并且可以遍历
+      //5.
+    </script>
+  </body>
+</html>

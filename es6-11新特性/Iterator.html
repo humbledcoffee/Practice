@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = ["a", "b", "c"];
+      //   console.log(arr);
+      let itr = arr[Symbol.iterator]();
+      //   console.log(itr.next());
+      //原生默认具备iterator接口的数据结构有 array set map string arguments NodeList
+      //有迭代器 就可以用for of
+      //对象不建议添加迭代器 因为数据结构是非线性的 但也可以添加 仅限于这种线性的对象可以
+      let obj = {
+        0: "0",
+        1: "1",
+        2: "2",
+        3: "3",
+        length: 4, //不加运行不了
+        [Symbol.iterator]: Array.prototype[Symbol.iterator],
+      };
+      for (let i of obj) {
+        console.log("obj", i);
+      }
+
+      let obj2 = {
+        name: "lidong",
+        age: 28,
+        sex: "男",
+        list: ["1", "2", "3"],
+        [Symbol.iterator]() {
+          let i = 0;
+          return {
+            next: () => {
+              return {
+                value: this.list[i++],
+                done: this.list.length + 1 === i ? true : false,
+              };
+            },
+          };
+        },
+      };
+      let iter2 = obj2[Symbol.iterator]();
+      console.log("obj2", iter2.next());
+      console.log("obj2", iter2.next());
+      console.log("obj2", iter2.next());
+      console.log("obj2", iter2.next());
+      //...结构赋值和展开运算符都是用的迭代器
+      //换句话说 只要部署了迭代器 那么就可以用展开运算符转换成一个数组 可以替代 array.from
+      console.log([...obj2]);
+    </script>
+  </body>
+</html>

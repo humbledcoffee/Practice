@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //执行数组去重 再转回数组
+      let s1 = new Set([1, 1, 1, 2, 2, 3, 4, 5, 5, 5, 6, 6]);
+      console.log(s1);
+      console.log([...s1], Array.from(s1));
+      //初始化set并添加新的元素
+      let s2 = new Set();
+      s2.add(1);
+      s2.add(1);
+      s2.add(2);
+      console.log("🚀 ~ file: set数据结构.html:19 ~ s2:", s2);
+      //有迭代器 可以用for of遍历
+      //size属性 和length同理
+      console.log("s1.size", s1.size);
+      //add 可以链式调用
+      s2.add(3).add(4);
+      //has 查询是否有该元素
+      console.log(s2.has(4));
+      //delete
+      console.log(s2.delete(4));
+      //clear
+      console.log(s2.clear());
+      console.log(s2);
+      //遍历 keys values entries forEach 键名就是键值
+    </script>
+  </body>
+</html>

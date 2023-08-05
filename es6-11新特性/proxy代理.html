@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //es6之前 监听和拦截
+      let obj = {};
+      Object.defineProperty(obj, "data", {
+        name: "lvyuying",
+        get() {
+          console.log("get");
+          return obj.data;
+        },
+        set() {
+          console.log("set");
+        },
+      });
+      console.log(obj);
+      //es6后 就是proxy代理 拦截很多个属性 可以拦截map set obj
+      let obj2 = {};
+      let proxy = new Proxy(obj2, {
+        get(target, key) {
+          console.log("get");
+          return target[key];
+        },
+        set(target, key, value) {
+          console.log("set");
+          target[key] = value;
+        },
+        //判断有么有某个属性 对应obj的 in 遍历的时候是能遍历出来的
+        has() {
+          return false;
+        },
+      });
+      console.log(obj2);
+      //代理set
+      let s = new Set();
+      let sProxy = new Proxy(s, {
+        get(target, key) {
+          console.log("sproxy", target[key]);
+          let value = target[key];
+          if (value instanceof Function) {
+            return value.bind(target);
+          }
+          return value;
+        },
+        set(target, key, value) {
+          console.log("set");
+        },
+      });
+    </script>
+  </body>
+</html>
