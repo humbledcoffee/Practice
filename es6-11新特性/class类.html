@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="list"></div>
+    <script>
+      //还是构造函数的语法糖 本质还是原型链
+      let s = Symbol("say");
+      class Person {
+        static myAge = 18; //静态属性
+
+        static sayMyAge = () => {
+          //静态方法
+          console.log("sayMyAge");
+        };
+        constructor(name, age, ele) {
+          this.name = name;
+          this.age = age;
+          this.ele = document.getElementById(ele);
+        }
+        [s]() {
+          console.log(`hi my name is ${this.name}`);
+        }
+        say() {
+          console.log(`hi my name is ${this.name}`);
+        }
+        get location() {
+          //关联其他属性 否则会递归
+          return this.ele.innerHTML;
+        }
+        set location(data) {
+          //关联其他属性
+          this.ele.innerHTML = data;
+        }
+      }
+      Person.myName = "lidong"; //静态属性
+      Person.myMethod = () => {
+        //静态方法
+        console.log("myMethoud");
+      };
+      let person = new Person("吕绿灵", "28", list);
+      console.log(person.__proto__ === Person.prototype);
+      //类的继承
+      class Student extends Person {
+        //静态方法和属性也会被继承
+        constructor(name, age, ele, score) {
+          super(name, age, ele); //继承父类构造函数
+          this.score = score;
+        }
+        say() {
+          super.say(); //父类的say
+          console.log("student say");
+        }
+        getScore() {
+          //就近原则 如果父类也有这个方法 因为原型链的查找 先找到自己 所以会执行自己
+          console.log(this.score);
+        }
+      }
+      let student = new Student("laotan", 18, "ele", 100);
+      console.log("🚀student:", student);
+    </script>
+  </body>
+</html>

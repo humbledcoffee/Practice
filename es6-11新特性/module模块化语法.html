@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer>
+      //也是异步 不过是dom已经渲染完了 才会执行 比async更靠谱
+    </script>
+    <script async>
+      //下载完了就会中断渲染 万一页面dom很多 还是会存在找不到dom的情况
+    </script>
+    <script type="module">
+      //将模块作为一个私密的模块引入进来 同时采用异步 变量就访问不到了
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      //模块化
+      /*
+        默认支持异步加载 就用不到async defer了
+        私密不漏
+        重名不怕
+        依赖不乱
+      */
+      import js1 from "./1.js";
+      console.log(js1);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //promise 期约 相当于一个构造函数
+      //接受一个参数 exexutor 执行器
+      let p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          //期约兑现
+          resolve("resolve");
+          //未兑现
+          //   reject("reject");
+        }, 1000);
+      });
+      //   p.then(
+      //     (res) => {
+      //       // 期约兑现
+      //       console.log(res);
+      //     },
+      //     (error) => {
+      //       //期约不兑现
+      //       console.log(error);
+      //     }
+      //   );
+      p.then((res) => {
+        // 期约兑现
+        console.log(res);
+      }).catch((error) => {
+        // 期约不兑现
+        console.log(error);
+      });
+      //异步操作未完成(pending)
+      //异步操作成功（fulfilled）
+      //异步操作失败(reject)
+      //状态更改不可逆
+      //可以将返回值转换成promise对象
+      let p2 = Promise.resolve("1");
+      console.log(p2);
+      // 参数也可以是一个promise对象
+      // throw new Error 也可以被catch接收
+      // 不return新的promise的话 默认返回当前promise对象 则支持链式调用
+      // promise.all 批量请求 全部fulfilled 才会返回fulfilled 有一个reject就会返回reject
+      // promise.race 批量请求 谁快返回谁的 无论什么状态
+      // promise.allSettled 全部凝结状态后 统一返回
+      // promise.any 任何一个真返回真 所有假才是假
+      // finally 必触发 无论是reject还是 fulfilled
+    </script>
+  </body>
+</html>
