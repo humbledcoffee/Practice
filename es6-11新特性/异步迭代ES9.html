@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function timer(t) {
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            res(`data-${t}`);
+          }, t);
+        });
+      }
+      let arr = [timer(1000), timer(2000), timer(3000)];
+      async function test() {
+        let g = test2();
+        let arr = [g.next(), g.next(), g.next()];
+        for await (const itr of arr) {
+          console.log("start-", Date.now());
+          console.log(itr);
+          console.log("end-", Date.now());
+        }
+      }
+      //使用异步生成器
+      async function* test2() {
+        yield timer(1000);
+        yield timer(2000);
+        yield timer(3000);
+      }
+      test();
+    </script>
+  </body>
+</html>

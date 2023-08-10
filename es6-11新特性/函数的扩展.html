@@ -20,6 +20,11 @@
       //剪头函数 无法访问arguments 没有this(指向父作用域)
       let test2 = () => "1";
       let test3 = () => ({ name: 1, age: 2 });
+      //es8在函数的参数后面可以加逗号了 就不报错了 (a,b,) 我自带的格式化自动剔除掉了
+      function test4(a, b) {
+        console.log("test4", a, b);
+      }
+      test4(1, 2);
     </script>
   </body>
 </html>

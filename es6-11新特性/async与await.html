@@ -6,6 +6,49 @@
     <title>Document</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      //函数返回值是一个promise对象
+      async function test() {
+        console.log("test");
+        return "6666";
+      }
+      let res = test();
+      res
+        .then((e) => {
+          console.log("then", e);
+        })
+        .catch(() => {
+          console.log("catch");
+        });
+      //搭配await使用
+      function ajax1() {
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            res("7777");
+          }, 1000);
+        });
+      }
+      function ajax2(arg) {
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            res("8888", arg);
+          }, 1000);
+        });
+      }
+      (async function testAjax() {
+        let res1 = await ajax1(); //也可以传普通数据类型 不过没有意义 如果ajax1没有成功 那么就不会往下走了
+        console.log(res1);
+        let res2 = await ajax2(res);
+        console.log(res2);
+      })();
+      //es10之后 catch的入参可以不传
+      async function testAjax2() {
+        try {
+          let res1 = await ajax1();
+        } catch {
+          console.log("超时");
+        }
+      }
+    </script>
   </body>
 </html>

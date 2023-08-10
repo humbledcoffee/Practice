@@ -40,7 +40,9 @@
       };
       //4.for in 不能比遍历symobol属性名的属性 可以通过 Object.getOwnPropertySymbols()拿到
       // Reflect.ownKeys() 可以拿到属性名数组并且可以遍历
-      //5.
+      //5.Symbol descriptor属性
+      let s3 = Symbol("sex");
+      console.log("s3", s3.description);
     </script>
   </body>
 </html>

@@ -15,6 +15,7 @@
     </script>
   </head>
   <body>
+    <button id="login">登录</button>
     <script type="module">
       //模块化
       /*
@@ -23,8 +24,27 @@
         重名不怕
         依赖不乱
       */
-      import js1 from "./1.js";
-      console.log(js1);
+      // import js1 from "./1.js";
+      // console.log(js1);
+    </script>
+    <script type="module">
+      //es11 动态导入
+      function login() {
+        return "普通";
+      }
+      let btn = document.querySelector("#login");
+      btn.onclick = function () {
+        let role = login();
+        console.log("role", role);
+        render(role);
+      };
+      async function render(role) {
+        if (role === "普通") {
+          let res = await import("./1.js");
+        } else {
+          let res = await import("./2.js");
+        }
+      }
     </script>
   </body>
 </html>

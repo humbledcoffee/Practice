@@ -16,8 +16,14 @@
       let obj = {
         [name + "12"]: "lidong",
       };
-      //3.扩展运算符 ... 相同覆盖 不同合并
-      //4. Object.assign 浅拷贝
+      //3.扩展运算符(ES9) ... 相同覆盖 不同合并
+      let obj7 = {
+        name1: "lidong",
+        age: 28,
+        sex: "男",
+      };
+      let { name1, ...other } = obj7; //有人称这个叫rest特性
+      //4. Object.assign 浅拷贝 而且会把拦截器的属性变成默认属性 可以用obj
       let obj2 = {
         name: "lidong",
       };
@@ -29,6 +35,33 @@
       //Object.is ===加强版 可以判断NaN +0 -0
       console.log(Object.is(NaN, NaN));
       console.log(Object.is(-0, +0));
+      //收集属性和属性名的方法 原先有keys values entries
+      //Object.getOwnPropertyDescriptors() 可以拿到对象是不是可配置的 可迭代的 可修改的 可读的等等
+      //get set拦截器可以在obj内部去写 别拦截同名属性
+      let obj5 = {
+        name: "吕绿灵",
+        age: 28,
+        get name() {
+          console.log("name");
+        },
+        set name(val) {
+          console.log("set name", val);
+        },
+      };
+      //这样拦截器就不会丢了
+      // Object.defineProperties(obj6, Object.getOwnPropertyDescriptors(obj5));
+      // Object.fromEntries 将数组键值,map或参数对转换为对象
+      let arr = [
+        ["name", "lidong"],
+        ["age", 18],
+      ];
+      console.log("arr", Object.fromEntries(arr));
+      let objMap = new Map();
+      objMap.set("name", "lidong");
+      objMap.set("age", "18");
+      console.log("objMap", Object.fromEntries(objMap));
+      let searchParams = new URLSearchParams("name=lvlvling&age=18");
+      console.log("searchParams", Object.fromEntries(searchParams));
     </script>
   </body>
 </html>

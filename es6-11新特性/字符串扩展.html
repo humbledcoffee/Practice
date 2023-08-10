@@ -7,10 +7,17 @@
   </head>
   <body>
     <script>
+      //模版字符串
       //之前需要用+拼接 而且不能换行
       //现在可以直接用变量替换 里边可以放函数 可以放运算符
       let name = "lidong";
       let nameStrEs6 = `my name is ${name}`;
+      //字符串填充 padStart() padEnd() 如果比原先字符串长度小 就不填充了
+      console.log(name.padStart(10, "X"));
+      console.log(name.padEnd(10, "X"));
+      //字符串去除首尾空格 trimStart trimEnd trimLeft trimRight 完全相同
+      let str = "     lidong     ";
+      console.log("|" + str.trimStart() + "|");
     </script>
   </body>
 </html>
