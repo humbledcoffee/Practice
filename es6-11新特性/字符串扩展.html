@@ -18,6 +18,30 @@
       //字符串去除首尾空格 trimStart trimEnd trimLeft trimRight 完全相同
       let str = "     lidong     ";
       console.log("|" + str.trimStart() + "|");
+      // str.matchAll方法
+      let str2 = `<ul>
+                    <li>11111</li>
+                    <li>22222</li>
+                    <li>33333</li>
+                    <li>44444</li>
+                  </ul>`;
+      let reg = /<li>(.*)<\/li>/g;
+      let str2Obj = str2.matchAll(reg);
+      console.log(str2Obj);
+      conosle.log([...str2Obj]);
+      //replaceAll 方法 es12
+      //I wish to wish the wish you wish to wish,
+      // but if you wish the wish the witch wishes,
+      // I won't wish the wish you wish to wish.
+      let str3 = `I wish to wish the wish you wish to wish, 
+                  but if you wishthe wish the witch wishes, 
+                  I won't wish the wish you wish to wish.`;
+      // 之前用replace只能替换第一个 现在全能替换
+      console.log(str3.replace("wish", "****"));
+      console.log(str3.replace(/wish/g, "****"));
+      console.log(str3.replaceAll("wish", "****"));
+      //es13 at 就不用再写length了
+      console.log(name.at(-1));
     </script>
   </body>
 </html>

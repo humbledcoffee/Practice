@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(globalThis === window);
+      //globalthis 是以一种标准 获取不同环境下的顶层对象
+      //例如在webworker中取的话 this只能拿到self 取window的话 不属于顶层对象
+      //例如node中 顶层对象叫global 不是window
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let obj = {
+        name: "lidong",
+      };
+      console.log(obj && obj.location && obj.location.city); //之前需要这么判断 否则会报错
+      console.log(obj?.location?.city ?? "山东"); //现在只用这么判断就可以了
+      obj?.location?.city ??= '山东'
+    </script>
+  </body>
+</html>

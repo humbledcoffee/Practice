@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <script>
+    <script type="module">
       //函数返回值是一个promise对象
       async function test() {
         console.log("test");
@@ -49,6 +49,11 @@
           console.log("超时");
         }
       }
+      //es13后 完全支持全局使用await
+      let res2 = await ajax1();
+      //在module模块中 也可以export default {ajax1}这样子写 等结果返回之后 才会整个代码
+      //所以配合动态导入去使用 let res3 = await import(./1.js) 这样引入这句话上面的代码是可以执行的 碰到这里会异步
+      //等res3收到结果后 才会执行后面的代码
     </script>
   </body>
 </html>

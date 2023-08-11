@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //新加了cause 可以拿到更具体的描述 不能改名 cause可以写成对象
+      function getData() {
+        try {
+          console.log(a);
+        } catch {
+          console.log("err");
+          throw new Error("没有a", {
+            cause: "少传了a这个参数",
+          });
+        }
+      }
+      try {
+        getData();
+      } catch (error) {
+        console.log(error, error.cause);
+      }
+    </script>
+  </body>
+</html>
+
+//十进制 1 2 3 4 5 6 7 8 9 10 //二进制 00 === 0 01 === 1 10 === 2 11 === 3 100
+=== 4 101 === 5 110 === 6 111 === 7 1000 === 8
+010100111100110011000101010101010100000101010101010101010101010 表情 数字 日期

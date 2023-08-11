@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let s = null ?? "lidong";
+      let s2 = 0 ?? "lidong";
+      // 在空值合并运算符中 0也是真 只要不是null或者undefined 都走右边 但0 或||会走右边
+      let s3 = 0 || "lidong";
+    </script>
+  </body>
+</html>

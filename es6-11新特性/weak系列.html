@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //主要是帮助垃圾回收机制去更好的清理不需要占用的内存 引用计数法 标记清除法
+      let obj = {
+        name: "lidong",
+      };
+      let s1 = new Set();
+      s1.add(obj);
+      s1.add("aaaaa");
+      obj = null;
+      //根据引用计数法 虽然obj指针被置为空了 但是s1还在用 所以就不会被清除掉
+      //这时候就出现了weakSet
+      //weakSet 是只能复杂类型 对象 数组 函数
+      // weak不会参与引用计数 所以obj2为空时候 里边也就清除掉了 而且不能再用for循环了 size也不能用了  因为s2里边值不确定了
+      let obj2 = {
+        name: "lidong",
+      };
+      let s2 = new WeakSet();
+      s1.add(obj2);
+      s1.add("aaaaa");
+      obj2 = null;
+      console.log(s2);
+      // weakmap同理 就不演示了
+      // dom对象也可以用弱引用
+      let obj3 = {
+        name: "lidong",
+      };
+      let obj4 = new weakRef(obj3);
+      //此处是弱引用 obj3 = null的话 obj4不会被引用计数 会被垃圾回收清除
+    </script>
+  </body>
+</html>

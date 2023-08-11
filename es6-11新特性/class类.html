@@ -62,6 +62,44 @@
       }
       let student = new Student("laotan", 18, "ele", 100);
       console.log("🚀student:", student);
+      //私有属性和方法 es13
+      class Person2 {
+        //原先是私有属性属于一种君子协定 名字前面加_ es13现在是支持了 前面加#
+        //可以看到 也可以修改属性值 但是无法访问了
+        #state = {};
+        static #count = 0; //静态属性方法都可以设为私有
+
+        //静态代码块 预先默认执行 不像constructor new的时候才执行
+        static obj = new Map();
+        static {
+          this.obj.set("name", "lidong");
+          this.obj.set("age", "29");
+        }
+        static {
+          console.log(this.obj);
+        }
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+          // 原先state要写在构造函数里边 现在不需要了 写外边就行了
+        }
+        get(key) {
+          return this.#state[key];
+        }
+        set(key, value) {
+          this.#state[key] = value;
+        }
+        //私有方法
+        #say() {
+          console.log("say");
+        }
+        hasObj() {
+          //判断是不是私有属性
+          return #state in this;
+        }
+      }
+      let person2 = new Person2("lidong", "28");
+      person2.set("name", "lvlvling");
     </script>
   </body>
 </html>

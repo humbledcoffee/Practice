@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //js处理不了或不能精确显示超过 +-2的53次方的数
+      //使用bigInt只要在数字后面加n就行
+      let num1 = 123;
+      let num2 = 123n;
+      console.log("双等", num1 == num2, num1 === num2, BigInt(num1) === num2);
+      //><都可以比较
+      // 加减乘除要注意 两边数值必须都等于bigInt 需要用bingInt转换函数转换
+      console.log(BigInt(num1));
+      //后端id如果传很大的数字 那么就得用bigint 或者使用json-bigint
+    </script>
+  </body>
+</html>
