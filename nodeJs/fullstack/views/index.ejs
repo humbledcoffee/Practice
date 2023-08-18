@@ -53,8 +53,8 @@
       };
       //删
       del.onclick = () => {
-        fetch("/api/user/64df13c3c6b71faa39d6b8d0"{
-          method:'DELETE'
+        fetch("/api/user/64df13c3c6b71faa39d6b8d0", {
+          method: "DELETE",
         })
           .then((res) => res.json())
           .then((res) => {
