@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mongoDB练习</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>mongoDB的增删改查的演示</h1>
+    <div>用户名: <input id="name" /></div>
+    <div>年龄: <input type="number" id="age" /></div>
+    <div>密码: <input type="password" id="password" /></div>
+    <div><button id="register">注册</button></div>
+    <script>
+      let name = document.querySelector("#name");
+      let age = document.querySelector("#age");
+      let password = document.querySelector("#password");
+      let register = document.querySelector("#register");
+      register.onclick = () => {
+        console.log(name.value, age.value, password.value);
+      };
+    </script>
+  </body>
+</html>
