@@ -17,6 +17,21 @@
       let register = document.querySelector("#register");
       register.onclick = () => {
         console.log(name.value, age.value, password.value);
+        fetch("/api/user/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: name.value,
+            age: age.value,
+            password: password.value,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log("/api/user/add", res);
+          });
       };
     </script>
   </body>
