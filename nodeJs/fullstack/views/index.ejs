@@ -10,14 +10,32 @@
     <div>年龄: <input type="number" id="age" /></div>
     <div>密码: <input type="password" id="password" /></div>
     <div><button id="register">注册</button></div>
+    <hr />
+    <button id="update">更新</button>
+    <button id="del">删除</button>
+    <hr />
+    <table border="1 ">
+      <thead>
+        <tr>
+          <td>id</td>
+          <td>用户名</td>
+          <td>年龄</td>
+          <td>密码</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
     <script>
       let name = document.querySelector("#name");
       let age = document.querySelector("#age");
       let password = document.querySelector("#password");
       let register = document.querySelector("#register");
+      let update = document.querySelector("#update");
+      let del = document.querySelector("#del");
+
+      // 增
       register.onclick = () => {
-        console.log(name.value, age.value, password.value);
-        fetch("/api/user/add", {
+        fetch("/api/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -33,6 +51,54 @@
             console.log("/api/user/add", res);
           });
       };
+      //删
+      del.onclick = () => {
+        fetch("/api/user/64df13c3c6b71faa39d6b8d0"{
+          method:'DELETE'
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log("/api/del", res);
+          });
+      };
+      // 改
+      update.onclick = () => {
+        fetch("/api/user/64df13c3c6b71faa39d6b8d0", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: name.value,
+            age: age.value,
+            password: password.value,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log("/api/user/update", res);
+          });
+      };
+
+      // 查
+      fetch("/api/user")
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          let tbody = document.querySelector("tbody");
+          tbody.innerHTML = res
+            .map(
+              (item) =>
+                `<tr>
+            <td>${item._id}</td>
+            <td>${item.username}</td>
+            <td>${item.age}</td>
+            <td>${item.password}</td>
+            </tr>`
+            )
+            .join("");
+        });
     </script>
+    <script></script>
   </body>
 </html>
