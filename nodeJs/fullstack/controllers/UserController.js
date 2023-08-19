@@ -1,4 +1,5 @@
 const UserModel = require("../models/UserModel");
+const JWT = require("../util/JWT");
 
 const UserController = {
   addUser: async (req, res) => {
@@ -23,7 +24,16 @@ const UserController = {
     const { username, password } = req.body;
     const data = await UserModel.loginUser(username, password);
     if (data.length) {
-      req.session.user = data[0];
+      //设置token
+      const token = JWT.generate(
+        {
+          _id: data[0]._id,
+          username: data[0].username,
+        },
+        "1h"
+      );
+      //将token 返回在header中
+      res.header("Authorization", token);
       res.send({ ok: 1 });
       return;
     } else {
@@ -31,9 +41,7 @@ const UserController = {
     }
   },
   logoutUser: async (req, res) => {
-    req.session.destroy(() => {
-      res.send({ ok: 1 });
-    });
+    res.send({ ok: 1 });
   },
 };
 module.exports = UserController;

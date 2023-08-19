@@ -3,13 +3,12 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var MongoStore = require("connect-mongo");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
 
-let session = require("express-session");
+const JWT = require("./util/JWT");
 var app = express();
 
 // view engine setup
@@ -23,31 +22,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(
-  session({
-    name: "fullstack",
-    secret: "lidong",
-    cookie: {
-      maxAge: 1000 * 60 * 60,
-      secure: false,
-    },
-    resave: true,
-    saveUninitialized: true, //重新设置session后会重新设置时间
-    store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1/fullstack_session", //新创建了数据库
-      ttl: 1000 * 60 * 60, //过期时间
-    }),
-  })
-);
-
 app.use((req, res, next) => {
-  if (req.session.user || req.url.includes("login")) {
-    req.session.date = Date.now();
+  if (req.url.includes("login")) {
     next();
+    return;
+  }
+  let token = req.headers["authorization"]?.split(" ")[1];
+  if (token) {
+    const payload = JWT.verify(token);
+    if (payload) {
+      //重新计算过期时间
+      const newToken = JWT.generate(
+        {
+          _id: payload._id,
+          username: payload.username,
+        },
+        "1h"
+      );
+      res.header("Authorization", newToken);
+      next();
+    } else {
+      res.status(401).send({ errCode: -1, errInfo: "token过期", ok: 0 });
+    }
   } else {
-    req.url.includes("api")
-      ? res.status(401).send({ ok: 0 })
-      : res.redirect("/login");
+    next();
   }
 });
 
