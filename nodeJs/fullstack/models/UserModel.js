@@ -17,5 +17,6 @@ const UserModel = {
     // skip 从第几个开始取
     // limit 要几个数据
     DBUserModel.find(),
+  loginUser: (username, password) => DBUserModel.find({ username, password }),
 };
 module.exports = UserModel;

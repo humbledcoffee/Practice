@@ -19,5 +19,21 @@ const UserController = {
     const userList = await UserModel.getUser();
     res.send(userList);
   },
+  loginUser: async (req, res) => {
+    const { username, password } = req.body;
+    const data = await UserModel.loginUser(username, password);
+    if (data.length) {
+      req.session.user = data[0];
+      res.send({ ok: 1 });
+      return;
+    } else {
+      res.send({ ok: 0 });
+    }
+  },
+  logoutUser: async (req, res) => {
+    req.session.destroy(() => {
+      res.send({ ok: 1 });
+    });
+  },
 };
 module.exports = UserController;

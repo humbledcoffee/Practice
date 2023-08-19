@@ -13,4 +13,8 @@ router.delete("/user/:id", UserController.addUser);
 router.put("/user/:id", UserController.updateUser);
 //查
 router.get("/user", UserController.getUser);
+//登录
+router.post("/login", UserController.loginUser);
+//退出登录
+router.get("/logout", UserController.logoutUser);
 module.exports = router;
