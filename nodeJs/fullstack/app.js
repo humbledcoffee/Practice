@@ -34,7 +34,7 @@ app.use(
     resave: true,
     saveUninitialized: true, //重新设置session后会重新设置时间
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1/lidong_session", //新创建了数据库
+      mongoUrl: "mongodb://127.0.0.1/fullstack_session", //新创建了数据库
       ttl: 1000 * 60 * 60, //过期时间
     }),
   })
