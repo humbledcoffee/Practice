@@ -38,6 +38,12 @@
         }
       );
     </script>
+    <style>
+      td img {
+        width: 50px;
+        height: 50px;
+      }
+    </style>
   </head>
   <body>
     <h1>
@@ -47,6 +53,7 @@
     <div>用户名: <input id="name" /></div>
     <div>年龄: <input type="number" id="age" /></div>
     <div>密码: <input type="password" id="password" /></div>
+    <div>头像: <input type="file" id="avatar" /></div>
     <div><button id="register">注册用户</button></div>
     <hr />
     <button id="update">更新用户</button>
@@ -59,6 +66,7 @@
           <td>用户名</td>
           <td>年龄</td>
           <td>密码</td>
+          <td>头像</td>
         </tr>
       </thead>
       <tbody></tbody>
@@ -71,13 +79,19 @@
       let update = document.querySelector("#update");
       let del = document.querySelector("#del");
       let logout = document.querySelector("#logout");
+      let avatar = document.querySelector("#avatar");
 
       // 增
       register.onclick = () => {
-        axios.post("/api/user", {
-          username: name.value,
-          age: age.value,
-          password: password.value,
+        const formsData = new FormData();
+        formsData.append("username", name.value);
+        formsData.append("age", age.value);
+        formsData.append("password", password.value);
+        formsData.append("avatar", avatar.files[0]);
+        axios.post("/api/user", formsData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         });
       };
       //删
@@ -104,6 +118,7 @@
             <td>${item.username}</td>
             <td>${item.age}</td>
             <td>${item.password}</td>
+            <td><img src='${item.avatar}'/></td>
             </tr>`
           )
           .join("");
@@ -114,6 +129,5 @@
         location.href = "/login";
       };
     </script>
-    <script></script>
   </body>
 </html>

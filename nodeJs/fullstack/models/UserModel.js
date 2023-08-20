@@ -1,10 +1,11 @@
 const DBUserModel = require("../DBmodel/DBUserModel.js");
 const UserModel = {
-  addUser: (username, password, age) =>
+  addUser: (username, password, age, avatar) =>
     DBUserModel.create({
       username,
       password,
       age,
+      avatar,
     }),
   delUser: (_id) => DBUserModel.deleteOne({ _id }),
   updateUser: (username, password, age, params) =>

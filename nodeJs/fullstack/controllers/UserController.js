@@ -4,7 +4,8 @@ const JWT = require("../util/JWT");
 const UserController = {
   addUser: async (req, res) => {
     const { username, password, age } = req.body;
-    await UserModel.addUser(username, password, age);
+    const avatar = `/uploads/${req?.file?.filename ?? "default.jpg"}`;
+    await UserModel.addUser(username, password, age, avatar);
     res.send({ ok: 1 });
   },
   delUser: async (req, res) => {
