@@ -9,6 +9,38 @@ const upload = multer({ dest: "public/uploads/" });
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");
 });
+/**
+ *
+ * @api {post} /api/user user
+ * @apiName addUser
+ * @apiGroup userGroup
+ * @apiVersion 1.0.0
+ *
+ *
+ * @apiBody  {String} username 用户名
+ * @apiBody  {String} password 密码
+ * @apiBody  {Number} age 年龄
+ * @apiBody  {file} avatar 头像
+ *
+ * @apiSuccess (200) {Number} ok 标识成功字段
+ *
+ * @apiParamExample  {multipart/form-data} 请求实例:
+ * {
+ *     username : "lidong",
+ *     password : '123',
+ *     age : 28,
+ *     avatar : file对象
+ * }
+ *
+ *
+ * @apiSuccessExample {Number} 返回实例:
+ * {
+ *     ok : 1
+ * }
+ *
+ *
+ */
+
 //增
 router.post("/user", upload.single("avatar"), UserController.addUser);
 //删
