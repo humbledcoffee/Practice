@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1.声明构造函数
+      function Axios(config) {
+        this.config = config;
+      }
+      Axios.prototype.request = function (config) {
+        //发送请求
+        let promise = Promise.resolve(config);
+        //声明一个数组
+        let chains = [dispatchRequest, undefined]; //undefined 是用来站位的
+        //调用then方法指定回调
+        let result = promise.then(chains.unshift(), chains.unshift);
+        return result;
+      };
+      //2. dispatchRequest 函数
+      function dispatchRequest(config) {
+        //调用适配器发送请求
+        return xhrAdapter(config).then(
+          (response) => {
+            //对相应的结果进行再处理
+            return response;
+          },
+          (error) => {
+            throw error;
+          }
+        );
+      }
+      //3.adapter 适配器
+      function xhrAdapter(config) {
+        console.log("xhrAdapter 函数执行");
+        return new Promise((resolve, reject) => {
+          //发送ajax请求
+          let xhr = new XMLHttpRequest();
+          xhr.open(config.method, config.url);
+          xhr.send();
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              //判断成功的条件
+              if (xhr.status >= 200 && xhr.status < 300) {
+                resolve({
+                  config,
+                  data: xhr.response,
+                  headers: xhr.getAllResponseHeaders(),
+                  request: xhr,
+                  status: xhr.status,
+                  statusText: xhr.statusText,
+                });
+              } else {
+                reject(new Error("请求失败"));
+              }
+            }
+          };
+        });
+      }
+
+      //4.创建axios函数
+      let axios = Axios.prototype.request.bind(null);
+
+      axios({
+        method: "GET",
+        url: "https://localhost:3000",
+      }).then((res) => {
+        console.log(res);
+      });
+    </script>
+  </body>
+</html>

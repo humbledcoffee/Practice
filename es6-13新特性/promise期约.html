@@ -29,11 +29,15 @@
       //   );
       p.then((res) => {
         // 期约兑现
-        console.log(res);
-      }).catch((error) => {
-        // 期约不兑现
-        console.log(error);
-      });
+        console.log("then", res);
+      })
+        .catch((error) => {
+          // 期约不兑现
+          console.log(error);
+        })
+        .then((res) => {
+          console.log("then2", res);
+        });
       //异步操作未完成(pending)
       //异步操作成功（fulfilled）
       //异步操作失败(reject)
