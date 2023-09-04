@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //组合继承优化
+
+      function P(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      P.prototype.hi = () => {
+        console.log("Hi");
+      };
+
+      //属性继承
+      function PP(name, age, sex) {
+        P.call(this, name, age);
+        this.sex = sex;
+      }
+
+      function midCLass(ParentClass, SonClass) {
+        function Middle() {
+          this.constructor = SonClass;
+        }
+        Middle.prototype = ParentClass.prototype;
+        SonClass.prototype = new Middle();
+      }
+
+      let ppp = new PP("李东", 28, "男");
+      console.log("ppp", ppp);
+      ppp.hi();
+    </script>
+  </body>
+</html>

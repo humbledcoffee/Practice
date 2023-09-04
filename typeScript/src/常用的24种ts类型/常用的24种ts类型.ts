@@ -10,4 +10,4 @@ let data3:object = 1 //小写的object 赋值基本数据类型就会报错 和�
 // enum
 // 其他特殊类型 any,unknown,never,void,元祖(tuple),可变元祖
 
-
+export {}
