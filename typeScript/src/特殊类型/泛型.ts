@@ -2,34 +2,33 @@
 // 特点1 定义时不明确使用时必须明确成魔咒具体数据类型的数据类型
 // 特点2 编译期间进行数据类型检查的数据类型
 
-interface Ref<V>{
-    value:V
+interface Ref<V> {
+    value: V
 }
 
 let ref: Ref<string> = {
-    value:'1234'
+    value: '1234'
 }
 type Student = { name: string, age: number }
 
 let ref2: Ref<Student> = {
-    value:{name:'李东',age:29}
+    value: { name: '李东', age: 29 }
 }
 export { }
 //泛型默认值
 
-class Demo<T=any>{
+class Demo<T = any>{
 
 }
 let d = new Demo() //这里声明的时候如果不给泛型写值的话 那么就会采取默认any
 
 //泛型约束
-
 class Order {
     orderId!: number
     orderName!: string
     static count: number
-    printId() {}
-    static getCount() {}
+    printId() { }
+    static getCount() { }
 }
 
 // type OrderIdType = Order['orderId'] //拿取类中的属性注解
@@ -38,6 +37,8 @@ class Order {
 
 type instancePropKeys<T extends Object> = keyof T //从泛型中拿取 属性名 并限制在object类型中
 type OrderPropKeys = instancePropKeys<Order> //属性名 用order接口通过泛型再做限制
+type DirectKeys<T> = T extends any ? T : never
+type CusKeys = DirectKeys<keyof Order>
 
 //vue3 中的泛型约束例子 类型泛型反向推断值
 
@@ -52,6 +53,6 @@ class ObjectRefImpl<T extends object, K extends keyof T>{
 }
 
 type ObjectType = { username: string; age: number }
-const obj = new ObjectRefImpl<ObjectType, 'age'>({username:'李东',age:28},'age')
+const obj = new ObjectRefImpl<ObjectType, 'age'>({ username: '李东', age: 28 }, 'age')
 
 

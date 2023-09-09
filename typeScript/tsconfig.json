@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
     // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */
@@ -24,13 +23,13 @@
 
     /* Modules */
     "rootDir": "./src",                                  /* 编译入口文件的路径 */
-    "module": "commonjs",                                /* 编译之后的代码 是什么规范的 cjs esModule等*/
+    "module": "NodeNext",                                /* 编译之后的代码 是什么规范的 cjs esModule等*/
     // "moduleResolution": "node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* 代表当前目录别名 */
     // "paths": {},                                      /* 内部工程目录进行重命名 */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
-    // "typeRoots": [],                                  /* 搜索第三方包的ts文件默认目录 './node_modules/@types'. */
-    // "types": [],                                      /*  指定的要包含的类型定义文件 */
+    "typeRoots": ["node_modules/@types"],                                  /* 搜索第三方包的ts文件默认目录 './node_modules/@types'. */
+    "types": ["node"],                                      /*  指定的要包含的类型定义文件 */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */
@@ -47,8 +46,8 @@
     // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from 'node_modules'. Only applicable with 'allowJs'. */
 
     /* Emit */
-    // "declaration": true,                              /* 当开启时 声明一个对外暴露的函数或者变量 就会相应生成类型注解的ts函数或者变量的.d.ts文件 */
-    // "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
+    "declaration": true,                              /* 当开启时 声明一个对外暴露的函数或者变量 就会相应生成类型注解的ts函数或者变量的.d.ts文件 */
+    "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
     // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
     // "sourceMap": true,                                /* 开启这个功能 可以在浏览器sourcemap功能下直接调试ts代码 就不用看编译之后的js代码了 */
     // "inlineSourceMap": true,                          /* Include sourcemap files inside the emitted JavaScript. */
@@ -102,8 +101,9 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* 像.d.ts这种纯声明文件 是否进行检查*/
-  }
+    "skipLibCheck": true                                 /* 像.d.ts这种纯声明文件 是否进行检查*/,
+  },
+  "include":[ "src/**/*.*" ]
 }
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
