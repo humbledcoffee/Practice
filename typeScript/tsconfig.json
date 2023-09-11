@@ -26,10 +26,10 @@
     "module": "NodeNext",                                /* 编译之后的代码 是什么规范的 cjs esModule等*/
     // "moduleResolution": "node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* 代表当前目录别名 */
-    // "paths": {},                                      /* 内部工程目录进行重命名 */
+    // "paths": {},                                         /* 内部工程目录进行重命名 */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
-    "typeRoots": ["node_modules/@types"],                                  /* 搜索第三方包的ts文件默认目录 './node_modules/@types'. */
-    "types": ["node"],                                      /*  指定的要包含的类型定义文件 */
+    // "typeRoots": ["node_modules/@types"],             /* 搜索第三方包的ts文件默认目录 './node_modules/@types'. */
+    // "types": ["node"],                                /*  指定的要包含的类型定义文件 */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */
@@ -67,16 +67,16 @@
     // "noEmitHelpers": true,                            /* Disable generating custom helper functions like '__extends' in compiled output. */
     // "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
     // "preserveConstEnums": true,                       /* Disable erasing 'const enum' declarations in generated code. */
-    // "declarationDir": "./",                           /* Specify the output directory for generated declaration files. */
+    // "declarationDir": "./dist",                           /* Specify the output directory for generated declaration files. */
     // "preserveValueImports": true,                     /* Preserve unused imported values in the JavaScript output that would otherwise be removed. */
 
     /* Interop Constraints */
     // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
     // "verbatimModuleSyntax": true,                     /* Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting. */
     // "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    // "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
     // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    // "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
 
     /* Type Checking */
     "strict": true,                                      /* 下面验证的总开关 */
@@ -101,9 +101,9 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* 像.d.ts这种纯声明文件 是否进行检查*/,
+    // "skipLibCheck": true                                 /* 像.d.ts这种纯声明文件 是否进行检查*/,
   },
-  "include":[ "src/**/*.*" ]
+  "include":[ "src/**/*.*",]
 }
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
