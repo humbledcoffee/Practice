@@ -46,9 +46,20 @@ var __decorate =
   };
 
 //带参数的装饰器
-function 装饰器函数(targetClass) {
-  let targetCLassObj = new targetClass();
-  targetCLassObj.buy();
+
+function 方法装饰器(方法装饰器传参) {
+    return function (目标类原型对象, 目标类方法名, 目标类方法的数据属性) {
+        const 目标类方法 = 目标类方法的数据属性?.value
+        目标类方法的数据属性?.value = function (参数) {
+            参数 = 参数.map((每个参数) => {
+                if (typeof 每个参数 === 'string') return 每个参数.replace(/\s+/g, '') //就是去除空格 没什么实际意义 体现前置拦截可以做的事情
+                return 每个参数
+            })
+            console.log('前置拦截')
+            目标类方法.apply(this, 参数)
+            console.log('后置拦截')
+        }
+    }
 }
 
 var 装饰器修饰的类 = function () {
@@ -61,6 +72,6 @@ var 装饰器修饰的类 = function () {
   装饰器修饰的类.prototype.placeOrder = function () {
     console.log(this.name + "下单购买");
   };
-  装饰器修饰的类 = __decorate([装饰器函数], 装饰器修饰的类);
+  装饰器修饰的类 = __decorate([方法装饰器], 装饰器修饰的类);
   return 装饰器修饰的类;
 };
