@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="GET">Get请求</button>
+    <button id="POST">Post请求</button>
+
+    <script>
+      let get = document.getElementById("GET");
+      let post = document.getElementById("POST");
+
+      post.onclick = () => {
+        fetch("/user/login", {
+          method: "POST",
+          body: JSON.stringify({
+            user: "李",
+            password: "1234567890",
+          }),
+          headers: {
+            "content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.ok) {
+              location.href = "/home";
+            } else {
+              slert("密码不对");
+            }
+          });
+      };
+    </script>
+  </body>
+</html>

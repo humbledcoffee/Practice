@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-const secret = "李";
+const jwt = require("jsonwebtoken");
+const secret = "lidong";
 const JWT = {
   generate(value, date) {
     return jwt.sign(value, secret, { expiresIn: date });
