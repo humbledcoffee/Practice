@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 const secret = "lidong";
 const JWT = {
   generate(value, date) {
@@ -12,4 +12,4 @@ const JWT = {
     }
   },
 };
-module.exports = JWT;
+export default JWT;

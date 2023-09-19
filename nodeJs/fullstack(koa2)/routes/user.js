@@ -1,5 +1,5 @@
 import Router from "koa-router";
-import JWT from "../util/JWT";
+import JWT from "../util/JWT.js";
 const router = new Router();
 
 //路由简单使用 同样支持curd koa支持链式请求
