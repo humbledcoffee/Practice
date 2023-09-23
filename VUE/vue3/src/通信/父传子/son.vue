@@ -1,13 +1,9 @@
 <template>
-
+    <div>{{ title }}</div>
 </template>
 
 <script lang="ts">
 export default {
-    data() {
-        return {
-
-        }
-    }
+    props:['title']
 }
 </script>

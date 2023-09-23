@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .test {
+        /* 正常情况下内容会溢出盒子 不会做裁剪 */
+        overflow: unset;
+        /* hidden会对溢出做裁剪 */
+        overflow: hidden;
+        /* 以滚动的形式出现 */
+        overflow: scroll;
+        /* 不溢出不滚动 */
+        overflow: auto;
+
+        /* 单行文本溢出省略 前提条件是文本whitespace设置为不换行*/
+
+        /* 直接裁剪 */
+        text-overflow: clip;
+        /* 溢出的内容显示省略号 */
+        text-overflow: ellipsis;
+    }
+</style>
+
+<body>
+    <div class="test">11122222444445555555</div>
+</body>
+
+</html>

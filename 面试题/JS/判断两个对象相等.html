@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1.使用json.stringify
+        let obj1 = {
+            a: 1
+        }
+        let obj2 = {
+            a: 2
+        }
+        console.log(JSON.stringify(obj1) === JSON.stringify(obj2))
+        //缺点
+        // 使用JSON.Stringify 转换的数据中，如果包含 function，undefined，Symbol，这几种类型，不可枚举属性，JSON.Stringify序列化后，这个键值对会消失。
+        // 转换的数据中包含 NaN，Infinity 值（含 - Infinity），JSON序列化后的结果会是null。
+        // 转换的数据中包含Date对象，JSON.Stringify序列化之后，会变成字符串。
+        // 转换的数据包含RegExp 引用类型序列化之后会变成空对象。
+        // 无法序列化不可枚举属性。
+        // 无法序列化对象的循环引用，（例如: obj[key] = obj)。
+        // 无法序列化对象的原型链。
+
+        //2.递归判断
+        function objIsEqual(a, b) {
+            if (a === b) {
+                return true
+            }
+            if (typeof a !== 'object' || typeof b !== 'object' || a === 'null' || b === 'null') {
+                return false
+            }
+            const aKeys = Object.keys(a)
+            const bKeys = Object.keys(b)
+            if (aKeys.length !== bKeys.length) {
+                return false
+            }
+            for (const key of aKeys) {
+                if (!b.hasOwnProperty(key) || !objIsEqual(a[key], b[key])) {
+                    return false
+                }
+            }
+
+            return true
+        }
+    </script>
+</body>
+
+</html>
