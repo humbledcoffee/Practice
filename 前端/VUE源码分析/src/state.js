@@ -1,9 +1,8 @@
 import { observe } from "./observe/index.js"
 
 export function initState(vm) {
-    const opts = vm.$options //获取所有的选项
-    if (opts.data) {
-        initData(vm)
+    if (vm.$options.data) {
+      initData(vm);
     }
 }
 

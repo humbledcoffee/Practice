@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="400">
+        此浏览器不支持canvas
+    </canvas>
+    <script type="module">
+        import { initShader } from './index.js'
+        const ctx = document.getElementById('canvas')
+        const gl = ctx.getContext('webgl')
+        //着色器源码
+        const VERTEX_SHADER_SOURCE = `
+        //必须要存在main函数
+        void main(){
+            //要绘制的点的坐标 x,y,z,w(齐次坐标) ==>绘制结果相当于 (x/w,y/w,z/w)
+            gl_Position = vec4(0.0,0.0,0.0,1.0);
+            //绘制的点的大小
+            gl_PointSize = 50.0;
+        }` //顶点着色器
+        const FRAGMENT_SHADER_SOURCE = `
+        //必须要存在的主函数
+        void main(){
+            //绘制的当前点的颜色 RGBA
+            gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+        }` //片元着色器
+        const program = initShader(gl, VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE)
+        //执行绘制
+        //要绘制的图形是什么,从那个开始,使用几个点
+        gl.drawArrays(gl.POINTS, 0, 1)
+    </script>
+</body>
+
+</html>
