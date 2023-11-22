@@ -1,7 +1,8 @@
+import './assets/styles/common.scss'
 import './assets/main.css'
 import 'normalize.css'
-import './assets/styles/reset.css';
-import './assets/styles/common.scss'
+import './assets/styles/reset.scss';
+import './assets/styles/global.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

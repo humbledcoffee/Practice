@@ -40,14 +40,15 @@ export default defineConfig({
   },
   css: {
     //css预处理器
-    preprocessorOptions: {
-      scss: {
-        additionalData: `
-        @import "@/assets/styles/global.scss";
-        @import "@/assets/styles/common.scss";
-        @import "@/assets/styles/reset.scss";`
-      }
-    }
+    // preprocessorOptions: {
+    //   scss: {
+    //     additionalData: `
+    //     @import "@/assets/styles/global.scss";
+    //     @import "@/assets/styles/reset.scss";
+    //     @import "@/assets/styles/common.scss";
+    //     `
+    //   }
+    // }
   },
   //启动服务配置
   server: {
