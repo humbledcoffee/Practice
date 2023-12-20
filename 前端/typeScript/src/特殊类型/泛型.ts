@@ -56,3 +56,17 @@ type ObjectType = { username: string; age: number }
 const obj = new ObjectRefImpl<ObjectType, 'age'>({ username: '李东', age: 28 }, 'age')
 
 
+function swap<T, U>(tuple: [T, U]): [U, T]{
+    return [tuple[1],tuple[0]]
+}
+
+const result = swap<string, number>(['1', 1])
+
+interface IwithLength {
+    length:number
+}
+function echoWithLength<T extends IwithLength>(arg: T): T{
+    console.log(arg.length)
+    return arg
+}
+const str = echoWithLength('str')

@@ -69,3 +69,10 @@ Object.defineProperty(People4.prototype,'sayHi',sayHi!)
 let p4 = new People4('李东')
 p4.sayHi()
 
+let sum: (x: number, y: string) => number
+interface PlusType {
+    (x: number, y: string) : number
+}
+type PlusType2 = (x: number, y: string) => number
+let sum2: PlusType2 = (x,y)=>1
+let result = sum2(1,'2')
