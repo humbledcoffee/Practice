@@ -1,31 +1,40 @@
 <script setup lang="ts">
+import { ComputedRef, Ref, computed, reactive, ref,watch } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
-</script>
+import type { typeUser, typeAgeStatus } from './App.ts'
+const count:Ref<number> = ref<number>(0)
+const user: typeUser = reactive<typeUser>({
+  name: '咖啡',
+  age:28
+})
+const increase:() => void = () => {
+  count.value++
+  user.age++
+}
 
+const ageStatus: ComputedRef<typeAgeStatus> = computed<typeAgeStatus>(() => 
+   ({
+    text: user.age > 30 ? '三十而立' : '还没立',
+    disabled: user.age > 30
+  })
+)
+watch(count, (newValue,oldValue) => {
+console.log("🚀 ~ file: App.vue:22 ~ watch ~ oldValue:", oldValue)
+console.log("🚀 ~ file: App.vue:22 ~ watch ~ newValue:", newValue)
+document.title = `目前点击次数为${count.value}`
+})
+</script>
 <template>
-  <div>
-    <a
-      href="https://vitejs.dev"
-      target="_blank"
-    >
-      <img
-        src="/vite.svg"
-        class="logo"
-        alt="Vite logo"
-      >
-    </a>
-    <a
-      href="https://vuejs.org/"
-      target="_blank"
-    >
-      <img
-        src="./assets/vue.svg"
-        class="logo vue"
-        alt="Vue logo"
-      >
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <div>{{ count }}</div>
+  <div>{{ user.age }}</div>
+  <button
+    type="button"
+    @click="increase"
+    :disabled="ageStatus.disabled"
+  >
+    {{ ageStatus.text }}
+  </button>
+  <HelloWorld msg="Vite + Vue" />   
 </template>
 
 <style scoped>
